@@ -9,10 +9,9 @@ namespace HW5_CSharpProfessional
         {
             var f = new F();
 
-
             Serialization serialization = new();
             
-            Console.WriteLine(serialization.SerializePropertiesToString(f.Get()));
+            Console.WriteLine($" Сериализация свойств в строку: {serialization.SerializePropertiesToString(f.Get())}");
 
             int cycle = 50000;
 
