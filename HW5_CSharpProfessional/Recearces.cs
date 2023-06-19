@@ -72,13 +72,12 @@ namespace HW5_CSharpProfessional
             return $"Продолжительность сериализации: {sw.ElapsedMilliseconds} мс.";
         }
 
-
         /// <summary>
         /// Запись в файл csv
         /// </summary>
         /// <param name="cycle">Кол-во и итераций</param>
         /// <param name="path">Путь к файлу</param>
-        public static string CsvDeserializationResearch(int cycle, string path)
+        public static string CsvSerializationResearch(int cycle, string path)
         {
             var sw = new Stopwatch();
 

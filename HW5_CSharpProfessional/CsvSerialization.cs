@@ -16,7 +16,7 @@ namespace HW5_CSharpProfessional
         /// <param name="obj">объект</param>
         /// <param name="separator">разделитель</param>
         /// <returns>сериализованные значения свойств obj</returns>
-        public static string Serialize<T>(T obj, char separator = '\t')
+        public static string? Serialize<T>(T obj, char separator = '\t')
         {
             if (obj != null)
             {

@@ -26,7 +26,7 @@ namespace HW5_CSharpProfessional
                 var serializObj = Recearces.MySerializationResearch(cycle, f);
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
                 var jsonSerializer = Recearces.MyCWSerializationResearch(cycle, f);
-                var CsvDeserializer = Recearces.CsvDeserializationResearch(cycle, path);
+                var CsvSerializer = Recearces.CsvSerializationResearch(cycle, path);
 
                 Console.WriteLine();
 
@@ -54,7 +54,7 @@ namespace HW5_CSharpProfessional
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Запись в csv, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(CsvDeserializer);
+                Console.WriteLine(CsvSerializer);
 
             }
             Console.ReadKey();
