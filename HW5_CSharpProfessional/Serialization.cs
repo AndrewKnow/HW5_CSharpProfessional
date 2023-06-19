@@ -4,16 +4,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace HW5_CSharpProfessional
 {
     /// <summary>
-    /// Сериализация свойств класса в строку
+    /// Методы сериализации
     /// </summary>
-    /// <param name="obj">Объект</param>
     public class Serialization
     {
-        public string SerializePropertiesToString(object obj)
+
+        /// <summary>
+        /// Сериализация свойств класса в строку
+        /// </summary>
+        /// <param name="obj">Объект</param>
+        public static string SerializePropertiesToString(object obj)
         {
             var stringBuilder = new StringBuilder();
 
@@ -39,5 +44,15 @@ namespace HW5_CSharpProfessional
 
             return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// JSON
+        /// </summary>
+        /// <param name="obj">Объект</param>
+        public static void JsonSerialization(object obj)
+        {
+            JsonConvert.SerializeObject(obj);
+        }
+
     }
 }

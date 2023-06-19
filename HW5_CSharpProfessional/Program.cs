@@ -17,34 +17,37 @@ namespace HW5_CSharpProfessional
 
             if (tryParse)
             {
+                var f = new F().Get();
+
                 int cycle = int.Parse(cycleString);
 
-                var sw = new Stopwatch();
+                var serializObj = Recearces.MySerializationResearch(cycle, f);
+                var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
+                var jsonSerializer = Recearces.MyCWSerializationResearch(cycle, f);
 
-                Console.WriteLine($"Сериализация свойств в строку, {cycleString} итераций:");
-                var f = new F();
+                Console.WriteLine();
 
-                Serialization serialization = new();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Сериализация свойств в строку, {cycle} итераций");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(serializObj);
 
-                for (int i = 0; i < cycle; i++)
-                {
-                    sw.Start();
-                    serialization.SerializePropertiesToString(f.Get());
-                }
-                sw.Stop();
+                Console.WriteLine();
 
-                Console.WriteLine($"Продолжительность: {sw.ElapsedMilliseconds} мс.\n{serialization.SerializePropertiesToString(f.Get())}");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Вывод текста в консоль, {cycle} итераций");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(serializObjInConsole);
 
-                var timer = new Stopwatch();
-                timer.Start();
-                for (var i = 0; i < cycle; i++)
-                {
+                Console.WriteLine();
 
-                }
-                timer.Stop();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Cериализация с помощью JSON, {cycle} итераций");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(jsonSerializer);
 
-                Console.ReadKey();
             }
+            Console.ReadKey();
         }
     }
 }
