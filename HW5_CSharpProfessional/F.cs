@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace HW5_CSharpProfessional
 {
-    internal class F
+    [Serializable]
+    public class F
     {
-        int i1;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
+        int i1 { get; set; }
+        int i2 { get; set; }
+        int i3 { get; set; }
+        int i4 { get; set; }
+        int i5 { get; set; }
 
-        F Get() => new F() { i1 = 1, i2 = 2, i3 = 3, i4 = 4, i5 = 5 };     
+        public F Get() => new F() { i1 = 1, i2 = 2, i3 = 3, i4 = 4, i5 = 5 };     
     }
 }
