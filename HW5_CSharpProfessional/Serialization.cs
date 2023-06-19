@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace HW5_CSharpProfessional
 {
+    /// <summary>
+    /// Сериализация свойств класса в строку
+    /// </summary>
+    /// <param name="obj">Объект</param>
     public class Serialization
     {
-        public static string SerializeToString (object obj)
+        public string SerializePropertiesToString(object obj)
         {
-            var stringBuilder = new StringBuilder ();
-            stringBuilder.Append (obj.GetType().Name + "{");
+            var stringBuilder = new StringBuilder();
 
-            foreach (var fildes in obj.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-            { 
-                stringBuilder.Append ("{");
-                stringBuilder.Append (fildes.Name + ", ");
+            stringBuilder.Append(@"""{");
 
-                switch (fildes.FieldType.Namespace)
+            int propertiesCount = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic).Count();
+            var properties = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
+
+            for (int i = 0; i < propertiesCount; i++ )
+            {
+
+                stringBuilder.Append(properties[i].Name + ":" + properties[i].GetValue(obj));
+                
+                if (i != propertiesCount - 1)
                 {
-                    case "System":
-                        stringBuilder.Append(fildes.GetValue(obj) + "}");
-                        break;
-                    default:
-                        stringBuilder.Append(fildes.GetValue(obj) + "}");
-                        break;
+                    stringBuilder.Append(properties[i].GetValue(obj) + @""",""");
                 }
-
             }
 
-            stringBuilder.Append ("}");
-            return stringBuilder.ToString ();
+            stringBuilder.Append(@"""}");
+            return stringBuilder.ToString();
         }
     }
 }
