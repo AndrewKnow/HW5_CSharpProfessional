@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.IO;
 
 namespace HW5_CSharpProfessional
 {
@@ -28,7 +29,7 @@ namespace HW5_CSharpProfessional
             }
             sw.Stop();
 
-            return $"IDE: Visual Studio 2022\nПродолжительность: {sw.ElapsedMilliseconds} мс.\n{Serialization.SerializePropertiesToString(f)}";
+            return $"IDE: Visual Studio 2022\nПродолжительность сериализации: {sw.ElapsedMilliseconds} мс.\n{Serialization.SerializePropertiesToString(f)}";
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace HW5_CSharpProfessional
             }
             sw.Stop();
 
-            return $"Продолжительность: {sw.ElapsedMilliseconds} мс.";
+            return $"Продолжительность записи в консоль: {sw.ElapsedMilliseconds} мс.";
         }
 
         /// <summary>
@@ -68,8 +69,33 @@ namespace HW5_CSharpProfessional
             }
             sw.Stop();
 
-            return $"Продолжительность: {sw.ElapsedMilliseconds} мс.";
+            return $"Продолжительность сериализации: {sw.ElapsedMilliseconds} мс.";
         }
 
+
+        /// <summary>
+        /// Запись в файл csv
+        /// </summary>
+        /// <param name="cycle">Кол-во и итераций</param>
+        /// <param name="path">Путь к файлу</param>
+        public static string CsvDeserializationResearch(int cycle, string path)
+        {
+            var sw = new Stopwatch();
+
+            var f = new F();
+            var data = new StringBuilder();
+
+            for (int i = 0; i < cycle; i++)
+            {
+                sw.Start();
+                data.AppendLine(CsvFileSerialization.Serialize(f.Get()));
+            }
+            sw.Stop();
+
+            using var streamWriter = new StreamWriter(path);
+            streamWriter.Write(data.ToString());
+
+            return $"Продолжительность записи в файл: {sw.ElapsedMilliseconds} мс.";
+        }
     }
 }

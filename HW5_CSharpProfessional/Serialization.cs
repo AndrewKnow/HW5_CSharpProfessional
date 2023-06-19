@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CsvHelper;
+using System.IO;
 
 
 namespace HW5_CSharpProfessional
@@ -25,7 +26,7 @@ namespace HW5_CSharpProfessional
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append(@"{""");
+            stringBuilder.Append("{");
 
             int propertiesCount = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic).Length;
             var properties = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
@@ -33,15 +34,15 @@ namespace HW5_CSharpProfessional
             for (int i = 0; i < propertiesCount; i++ )
             {
 
-                stringBuilder.Append(properties[i].Name + ":");
+                stringBuilder.Append(@"""" +properties[i].Name + @""":");
 
                 if (i < propertiesCount - 1)
                 {
-                    stringBuilder.Append(properties[i].GetValue(obj) + @""",""");
+                    stringBuilder.Append(properties[i].GetValue(obj) + ",");
                 }
                 else
                 {
-                    stringBuilder.Append(properties[i].GetValue(obj) + @"""}");
+                    stringBuilder.Append(properties[i].GetValue(obj) + "}");
                 }
             }
 
@@ -57,12 +58,36 @@ namespace HW5_CSharpProfessional
             JsonConvert.SerializeObject(obj);
         }
 
-        public static void CsvSerialization(object obj)
+        /// <summary>
+        /// csv
+        /// </summary>
+        /// <param name="obj"></param>
+        public static void CsvSerialization(object obj, StreamWriter streamWriter)
         {
 
-            File.AppendAllText("file.csv", SerializePropertiesToString(obj));
+
+
+
+            streamWriter.WriteLine(SerializePropertiesToString(obj));
+
+            //File.AppendAllText("file.csv", SerializePropertiesToString(obj));
 
         }
+
+        public static void CsvDeserialization()
+        {
+
+            var streamReader = new StreamReader("file.csv");
+
+            var data = streamReader.ReadToEnd();
+            var values = data.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+
+
+
+        }
+
+
+
 
     }
 }

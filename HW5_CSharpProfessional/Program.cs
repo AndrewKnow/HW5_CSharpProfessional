@@ -13,21 +13,20 @@ namespace HW5_CSharpProfessional
 
             bool tryParse = int.TryParse(cycleString, out int _);
 
+            string path = "file.csv";
+
             Console.WriteLine();
 
             if (tryParse)
             {
-                var f = new F().Get();
+                var f = new F();
 
                 int cycle = int.Parse(cycleString);
 
                 var serializObj = Recearces.MySerializationResearch(cycle, f);
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
                 var jsonSerializer = Recearces.MyCWSerializationResearch(cycle, f);
-
-
-                Serialization.CsvSerialization(f);
-
+                var CsvDeserializer = Recearces.CsvDeserializationResearch(cycle, path);
 
                 Console.WriteLine();
 
@@ -49,6 +48,13 @@ namespace HW5_CSharpProfessional
                 Console.WriteLine($"Cериализация с помощью JSON, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(jsonSerializer);
+
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Запись в csv, {cycle} итераций");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(CsvDeserializer);
 
             }
             Console.ReadKey();
