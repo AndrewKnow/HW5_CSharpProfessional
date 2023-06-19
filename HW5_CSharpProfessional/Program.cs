@@ -5,7 +5,7 @@ namespace HW5_CSharpProfessional
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Введите количество итераций:");
 
@@ -19,11 +19,21 @@ namespace HW5_CSharpProfessional
             {
                 int cycle = int.Parse(cycleString);
 
+                var sw = new Stopwatch();
+
+                Console.WriteLine($"Сериализация свойств в строку, {cycleString} итераций:");
                 var f = new F();
 
                 Serialization serialization = new();
 
-                Console.WriteLine($"Сериализация свойств в строку, {cycleString} итераций:\n{serialization.SerializePropertiesToString(f.Get())}");
+                for (int i = 0; i < cycle; i++)
+                {
+                    sw.Start();
+                    serialization.SerializePropertiesToString(f.Get());
+                }
+                sw.Stop();
+
+                Console.WriteLine($"Продолжительность: {sw.ElapsedMilliseconds} мс.\n{serialization.SerializePropertiesToString(f.Get())}");
 
                 var timer = new Stopwatch();
                 timer.Start();
