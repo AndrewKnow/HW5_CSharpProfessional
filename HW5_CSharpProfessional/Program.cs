@@ -13,6 +13,8 @@ namespace HW5_CSharpProfessional
 
             bool tryParse = int.TryParse(cycleString, out int _);
 
+            Console.WriteLine();
+
             if (tryParse)
             {
                 int cycle = int.Parse(cycleString);
@@ -21,7 +23,7 @@ namespace HW5_CSharpProfessional
 
                 Serialization serialization = new();
 
-                Console.WriteLine($" Сериализация свойств в строку, {cycleString} итераций: {serialization.SerializePropertiesToString(f.Get())}");
+                Console.WriteLine($"Сериализация свойств в строку, {cycleString} итераций:\n{serialization.SerializePropertiesToString(f.Get())}");
 
                 var timer = new Stopwatch();
                 timer.Start();
