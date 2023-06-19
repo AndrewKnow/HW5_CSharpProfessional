@@ -38,9 +38,9 @@ namespace HW5_CSharpProfessional
         public static T? Deserialize<T>(string obj, char separator = '\t') where T : class, new()
         {
             var propertiesValues = obj.Split(separator);
-            var properties = typeof(T).GetProperties();
+            var properties = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
 
-            if (propertiesValues.Length != properties.Length)
+            if (propertiesValues.Length == properties.Length)
             {
                 var objT = new T();
 
@@ -48,14 +48,13 @@ namespace HW5_CSharpProfessional
                 foreach (var p in properties)
                 {
                     var pValue = Convert.ChangeType(propertiesValues[i++], p.PropertyType);
-                    p.SetValue(obj, pValue);
+                    p.SetValue(objT, pValue);
                 }
 
                 return objT;
             }
 
             return null;
-
         }
     }
 }

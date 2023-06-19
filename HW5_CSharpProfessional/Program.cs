@@ -27,6 +27,7 @@ namespace HW5_CSharpProfessional
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
                 var jsonSerializer = Recearces.JsonSerializationResearch(cycle, f);
                 var CsvSerializer = Recearces.CsvSerializationResearch(cycle, path);
+                var CsvDeserializer = Recearces.CsvDeserializationResearch(cycle, path);
 
                 Console.WriteLine();
 
@@ -52,15 +53,15 @@ namespace HW5_CSharpProfessional
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"Сравнение скорости сериализации JSON и сериализации свойств в строку:\n");
+                Console.WriteLine($"Сравнение скорости сериализации JSON и сериализации свойств в строку c выводом в консоль:");
                 Console.ForegroundColor = ConsoleColor.White;
-                if (ForComparison.JSONSerializationMillisecond > ForComparison.MySerializationMillisecond)
+                if (ForComparison.JSONSerializationMillisecond < ForComparison.MySerializationMillisecond)
                 {
-                    Console.WriteLine($"Json бысрее на {ForComparison.JSONSerializationMillisecond - ForComparison.MySerializationMillisecond} мс");
+                    Console.WriteLine($"Json бысрее на {ForComparison.MySerializationMillisecond - ForComparison.JSONSerializationMillisecond} мс");
                 }    
                 else
                 {
-                    Console.WriteLine($"Сериализация свойств в строку бысрее на {ForComparison.MySerializationMillisecond - ForComparison.JSONSerializationMillisecond} мс");
+                    Console.WriteLine($"Сериализация свойств в строку бысрее на {ForComparison.JSONSerializationMillisecond - ForComparison.MySerializationMillisecond} мс");
                 }
                 if (ForComparison.JSONSerializationMillisecond == ForComparison.MySerializationMillisecond)
                 {
@@ -73,6 +74,16 @@ namespace HW5_CSharpProfessional
                 Console.WriteLine($"Запись в csv, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(CsvSerializer);
+
+
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Продолжительность десериализации из файла, {cycle} итераций");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(CsvDeserializer);
+
+
 
             }
             Console.ReadKey();

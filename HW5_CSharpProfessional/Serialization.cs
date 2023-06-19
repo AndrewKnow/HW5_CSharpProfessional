@@ -15,7 +15,7 @@ namespace HW5_CSharpProfessional
     /// <summary>
     /// Методы сериализации
     /// </summary>
-    public class Serialization
+    public static class Serialization
     {
 
         /// <summary>
@@ -57,37 +57,5 @@ namespace HW5_CSharpProfessional
         {
             JsonConvert.SerializeObject(obj);
         }
-
-        /// <summary>
-        /// csv
-        /// </summary>
-        /// <param name="obj"></param>
-        public static void CsvSerialization(object obj, StreamWriter streamWriter)
-        {
-
-
-
-
-            streamWriter.WriteLine(SerializePropertiesToString(obj));
-
-            //File.AppendAllText("file.csv", SerializePropertiesToString(obj));
-
-        }
-
-        public static void CsvDeserialization()
-        {
-
-            var streamReader = new StreamReader("file.csv");
-
-            var data = streamReader.ReadToEnd();
-            var values = data.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-
-
-
-        }
-
-
-
-
     }
 }
