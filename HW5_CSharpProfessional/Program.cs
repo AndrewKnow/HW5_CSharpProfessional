@@ -7,25 +7,32 @@ namespace HW5_CSharpProfessional
     {
         static void Main(string[] args)
         {
-            var f = new F();
+            Console.WriteLine("Введите количество итераций:");
 
-            Serialization serialization = new();
-            
-            Console.WriteLine($" Сериализация свойств в строку: {serialization.SerializePropertiesToString(f.Get())}");
+            var cycleString = Console.ReadLine();
 
-            int cycle = 50000;
+            bool tryParse = int.TryParse(cycleString, out int _);
 
-            var timer = new Stopwatch();
-            timer.Start();
-            for (var i = 0; i < cycle; i++)
+            if (tryParse)
             {
+                int cycle = int.Parse(cycleString);
 
+                var f = new F();
+
+                Serialization serialization = new();
+
+                Console.WriteLine($" Сериализация свойств в строку, {cycleString} итераций: {serialization.SerializePropertiesToString(f.Get())}");
+
+                var timer = new Stopwatch();
+                timer.Start();
+                for (var i = 0; i < cycle; i++)
+                {
+
+                }
+                timer.Stop();
+
+                Console.ReadKey();
             }
-            timer.Stop();
-
-
-
-            Console.ReadKey();
         }
     }
 }
