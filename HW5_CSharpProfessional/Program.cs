@@ -25,6 +25,10 @@ namespace HW5_CSharpProfessional
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
                 var jsonSerializer = Recearces.MyCWSerializationResearch(cycle, f);
 
+
+                Serialization.CsvSerialization(f);
+
+
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.Blue;

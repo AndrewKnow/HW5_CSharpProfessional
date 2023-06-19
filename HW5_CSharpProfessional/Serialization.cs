@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using CsvHelper;
+
 
 namespace HW5_CSharpProfessional
 {
@@ -52,6 +55,13 @@ namespace HW5_CSharpProfessional
         public static void JsonSerialization(object obj)
         {
             JsonConvert.SerializeObject(obj);
+        }
+
+        public static void CsvSerialization(object obj)
+        {
+
+            File.AppendAllText("file.csv", SerializePropertiesToString(obj));
+
         }
 
     }
