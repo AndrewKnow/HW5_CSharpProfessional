@@ -28,7 +28,7 @@ namespace HW5_CSharpProfessional
                 Serialization.SerializePropertiesToString(f);
             }
             sw.Stop();
-
+            ForComparison.MySerializationMillisecond = sw.ElapsedMilliseconds;
             return $"IDE: Visual Studio 2022\nПродолжительность сериализации: {sw.ElapsedMilliseconds} мс.\n{Serialization.SerializePropertiesToString(f)}";
         }
 
@@ -68,6 +68,8 @@ namespace HW5_CSharpProfessional
                 Serialization.JsonSerialization(f);
             }
             sw.Stop();
+
+            ForComparison.JSONSerializationMillisecond = sw.ElapsedMilliseconds;
 
             return $"Продолжительность сериализации: {sw.ElapsedMilliseconds} мс.";
         }

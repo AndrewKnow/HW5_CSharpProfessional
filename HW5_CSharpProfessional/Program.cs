@@ -25,7 +25,7 @@ namespace HW5_CSharpProfessional
 
                 var serializObj = Recearces.MySerializationResearch(cycle, f);
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
-                var jsonSerializer = Recearces.MyCWSerializationResearch(cycle, f);
+                var jsonSerializer = Recearces.JsonSerializationResearch(cycle, f);
                 var CsvSerializer = Recearces.CsvSerializationResearch(cycle, path);
 
                 Console.WriteLine();
@@ -49,6 +49,24 @@ namespace HW5_CSharpProfessional
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(jsonSerializer);
 
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"Сравнение скорости сериализации JSON и сериализации свойств в строку:\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                if (ForComparison.JSONSerializationMillisecond > ForComparison.MySerializationMillisecond)
+                {
+                    Console.WriteLine($"Json бысрее на {ForComparison.JSONSerializationMillisecond - ForComparison.MySerializationMillisecond} мс");
+                }    
+                else
+                {
+                    Console.WriteLine($"Сериализация свойств в строку бысрее на {ForComparison.MySerializationMillisecond - ForComparison.JSONSerializationMillisecond} мс");
+                }
+                if (ForComparison.JSONSerializationMillisecond == ForComparison.MySerializationMillisecond)
+                {
+                    Console.WriteLine("Результаты равны");
+                }
+     
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.Blue;
