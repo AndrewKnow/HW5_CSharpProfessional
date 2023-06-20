@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW5_CSharpProfessional
 {
+    [Serializable]
     public class F
     {
         int i1 { get; set; } 
