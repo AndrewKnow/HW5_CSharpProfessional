@@ -26,7 +26,7 @@ namespace HW5_CSharpProfessional
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("{");
+            stringBuilder.Append('{');
 
             int propertiesCount = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic).Length;
             var properties = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
