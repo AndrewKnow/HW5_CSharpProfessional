@@ -104,7 +104,7 @@ namespace HW5_CSharpProfessional
         }
 
 
-        public static string CsvDeserializationResearch(int cycle, string path)
+        public static string CsvDeserializationResearch(string path)
         {
             var sw = new Stopwatch();
 

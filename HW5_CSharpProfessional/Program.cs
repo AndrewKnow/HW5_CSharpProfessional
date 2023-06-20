@@ -27,7 +27,7 @@ namespace HW5_CSharpProfessional
                 var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
                 var jsonSerializer = Recearces.JsonSerializationResearch(cycle, f);
                 var CsvSerializer = Recearces.CsvSerializationResearch(cycle, path);
-                var CsvDeserializer = Recearces.CsvDeserializationResearch(cycle, path);
+                var CsvDeserializer = Recearces.CsvDeserializationResearch(path);
 
                 Console.WriteLine();
 
