@@ -24,34 +24,38 @@ namespace HW5_CSharpProfessional
                 int cycle = int.Parse(cycleString);
 
                 var serializObj = Recearces.MySerializationResearch(cycle, f);
-                var serializObjInConsole = Recearces.MyCWSerializationResearch(cycle, f);
-                var jsonSerializer = Recearces.JsonSerializationResearch(cycle, f);
-                var CsvSerializer = Recearces.CsvSerializationResearch(cycle, path);
-                var CsvDeserializer = Recearces.CsvDeserializationResearch(path);
+
+                var sw = new Stopwatch();
+
+                for (int i = 0; i < cycle; i++)
+                {
+                    sw.Start();
+                    Console.WriteLine(Recearces.MyCWSerializationResearch(f));
+                }
+                sw.Stop();
+                ForComparison.MySerializationMillisecond = sw.ElapsedMilliseconds;
 
                 Console.WriteLine();
-
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Сериализация свойств в строку, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(serializObj);
+                Console.WriteLine($"IDE: Visual Studio 2022\nПродолжительность сериализации: {serializObj} мс.\n{Serialization.SerializePropertiesToString(f)}\";");
 
                 Console.WriteLine();
-
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Вывод текста в консоль, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(serializObjInConsole);
+                Console.WriteLine($"Продолжительность записи в консоль: {sw.ElapsedMilliseconds} мс.");
+
+                var jsonSerializer = Recearces.JsonSerializationResearch(cycle, f);
 
                 Console.WriteLine();
-
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Cериализация с помощью JSON, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(jsonSerializer);
+                Console.WriteLine($"Продолжительность сериализации: {jsonSerializer} мс.");
 
                 Console.WriteLine();
-
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Сравнение скорости сериализации JSON и сериализации свойств в строку c выводом в консоль:");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -67,24 +71,23 @@ namespace HW5_CSharpProfessional
                 {
                     Console.WriteLine("Результаты равны");
                 }
-     
-                Console.WriteLine();
 
+                var csvSerializer = Recearces.CsvSerializationResearch(cycle, path);
+                
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Запись в csv, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(CsvSerializer);
+                Console.WriteLine($"Продолжительность записи в файл: {csvSerializer} мс.");
 
+                var csvDeserializer = Recearces.CsvDeserializationResearch(path);
 
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Продолжительность десериализации из файла, {cycle} итераций");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(CsvDeserializer);
-
-
-
+                Console.WriteLine($"Продолжительность десериализации из файла: {csvDeserializer} мс.");
             }
             Console.ReadKey();
         }

@@ -19,7 +19,7 @@ namespace HW5_CSharpProfessional
         /// <param name="cycle">Кол-во и итераций</param>
         /// <param name="f">Класс F</param>
         /// <returns>Результат замера в милисекундах</returns>
-        public static string MySerializationResearch(int cycle, object f)
+        public static double MySerializationResearch(int cycle, object f)
         {
             var sw = new Stopwatch();
 
@@ -30,7 +30,7 @@ namespace HW5_CSharpProfessional
             }
             sw.Stop();
             
-            return $"IDE: Visual Studio 2022\nПродолжительность сериализации: {sw.ElapsedMilliseconds} мс.\n{Serialization.SerializePropertiesToString(f)}";
+            return sw.ElapsedMilliseconds;
         }
 
         /// <summary>
@@ -39,20 +39,9 @@ namespace HW5_CSharpProfessional
         /// <param name="cycle">Кол-во и итераций</param>
         /// <param name="f">Класс F</param>
         /// <returns>Результат замера в милисекундах</returns>
-        public static string MyCWSerializationResearch(int cycle, object f)
+        public static string MyCWSerializationResearch(object f)
         {
-            var sw = new Stopwatch();
-
-            for (int i = 0; i < cycle; i++)
-            {
-                sw.Start();
-                Console.WriteLine(Serialization.SerializePropertiesToString(f));
-            }
-            sw.Stop();
-
-            ForComparison.MySerializationMillisecond = sw.ElapsedMilliseconds;
-
-            return $"Продолжительность записи в консоль: {sw.ElapsedMilliseconds} мс.";
+            return Serialization.SerializePropertiesToString(f);
         }
 
         /// <summary>
@@ -61,7 +50,7 @@ namespace HW5_CSharpProfessional
         /// <param name="cycle">Кол-во и итераций</param>
         /// <param name="f">Класс F</param>
         /// <returns>Результат замера в милисекундах</returns>
-        public static string JsonSerializationResearch(int cycle, object f)
+        public static double JsonSerializationResearch(int cycle, object f)
         {
             var sw = new Stopwatch();
 
@@ -74,7 +63,7 @@ namespace HW5_CSharpProfessional
 
             ForComparison.JSONSerializationMillisecond = sw.ElapsedMilliseconds;
 
-            return $"Продолжительность сериализации: {sw.ElapsedMilliseconds} мс.";
+            return sw.ElapsedMilliseconds;
         }
 
         /// <summary>
@@ -82,7 +71,7 @@ namespace HW5_CSharpProfessional
         /// </summary>
         /// <param name="cycle">Кол-во и итераций</param>
         /// <param name="path">Путь к файлу</param>
-        public static string CsvSerializationResearch(int cycle, string path)
+        public static double CsvSerializationResearch(int cycle, string path)
         {
             var sw = new Stopwatch();
 
@@ -100,11 +89,10 @@ namespace HW5_CSharpProfessional
             streamWriter.Write(data.ToString());
             streamWriter.Close();
 
-            return $"Продолжительность записи в файл: {sw.ElapsedMilliseconds} мс.";
+            return sw.ElapsedMilliseconds;
         }
 
-
-        public static string CsvDeserializationResearch(string path)
+        public static double CsvDeserializationResearch(string path)
         {
             var sw = new Stopwatch();
 
@@ -118,14 +106,10 @@ namespace HW5_CSharpProfessional
             {
                 sw.Start();
                 obj[i] = CsvFileSerialization.Deserialize<F>(values[i]);
-
-                Console.WriteLine($"тест { Serialization.SerializePropertiesToString(obj[i])}");
             }
             sw.Stop();
 
-           
-            return $"Продолжительность десериализации из файла: {sw.ElapsedMilliseconds} мс.";
+            return sw.ElapsedMilliseconds;
         }
-
     }
 }

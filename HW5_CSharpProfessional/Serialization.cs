@@ -17,7 +17,6 @@ namespace HW5_CSharpProfessional
     /// </summary>
     public static class Serialization
     {
-
         /// <summary>
         /// Сериализация свойств класса в строку
         /// </summary>
@@ -45,7 +44,6 @@ namespace HW5_CSharpProfessional
                     stringBuilder.Append(properties[i].GetValue(obj) + "}");
                 }
             }
-
             return stringBuilder.ToString();
         }
 
